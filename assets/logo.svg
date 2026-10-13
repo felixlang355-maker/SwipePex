@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+  <defs>
+    <!-- Background Squircle Gradient (Apple Clean Primary Green) -->
+    <linearGradient id="appBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3CD965" />
+      <stop offset="60%" stop-color="#34C759" />
+      <stop offset="100%" stop-color="#248A3D" />
+    </linearGradient>
+
+    <!-- Card Shadow -->
+    <filter id="cardShadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0f3b17" flood-opacity="0.32" />
+    </filter>
+
+    <!-- Subtle Bevel Highlight -->
+    <linearGradient id="innerGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35" />
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.0" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.12" />
+    </linearGradient>
+
+    <!-- Photo Landscape Gradient -->
+    <linearGradient id="mountainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34C759" />
+      <stop offset="100%" stop-color="#248A3D" />
+    </linearGradient>
+
+    <!-- Favorite Accent Dot -->
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5277" />
+      <stop offset="100%" stop-color="#FF2D55" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Apple Squircle App Icon Base -->
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#appBgGrad)" />
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#innerGlow)" />
+  <rect x="4.5" y="4.5" width="119" height="119" rx="27.5" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1" />
+
+  <!-- 2. Back Photo Card (Slightly tilted left -8deg, simulating a stacked gallery deck) -->
+  <g transform="translate(64 64) rotate(-8) translate(-64 -64)">
+    <rect x="36" y="32" width="56" height="64" rx="10" fill="#FFFFFF" fill-opacity="0.3" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1.2" />
+  </g>
+
+  <!-- 3. Front Active Photo Card (Swiping right +5deg with elevation) -->
+  <g transform="translate(64 64) rotate(5) translate(-64 -64)" filter="url(#cardShadow)">
+    <!-- White Card Body -->
+    <rect x="34" y="30" width="60" height="68" rx="12" fill="#FFFFFF" />
+    
+    <!-- Photo Viewport Area -->
+    <rect x="38" y="34" width="52" height="42" rx="8" fill="#F5F5F7" />
+
+    <!-- Clip Path for Landscape Artwork -->
+    <g clip-path="url(#photoClip)">
+      <clipPath id="photoClip">
+        <rect x="38" y="34" width="52" height="42" rx="8" />
+      </clipPath>
+      
+      <!-- Sun / Aperture -->
+      <circle cx="76" cy="45" r="5" fill="#FF9500" />
+      
+      <!-- Back Mountain Wave -->
+      <path d="M42 76 L56 56 L68 70 L78 60 L92 76 Z" fill="#34C759" fill-opacity="0.45" />
+      
+      <!-- Front Mountain Wave -->
+      <path d="M36 76 L50 62 L64 76 Z" fill="url(#mountainGrad)" />
+      <path d="M60 76 L72 65 L88 76 Z" fill="url(#mountainGrad)" />
+    </g>
+
+    <!-- Card Bottom Info Line / Slider Indicator -->
+    <rect x="42" y="83" width="26" height="4" rx="2" fill="#E5E5EA" />
+    <circle cx="82" cy="85" r="3" fill="url(#pinkGrad)" />
+  </g>
+
+  <!-- 4. Dynamic Swipe Motion Arc (Arrow swiping right with high momentum) -->
+  <g transform="translate(0, 0)">
+    <!-- Curved Trail -->
+    <path d="M22 84 C24 98, 42 108, 68 107 C88 106, 102 96, 107 80" 
+          fill="none" 
+          stroke="#FFFFFF" 
+          stroke-width="4" 
+          stroke-linecap="round" 
+          stroke-dasharray="2 0" 
+          opacity="0.95" />
+
+    <!-- Glowing Arrow Head -->
+    <path d="M102 85 L108 78 L111 88" 
+          fill="none" 
+          stroke="#FFFFFF" 
+          stroke-width="4.2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+  </g>
+</svg>

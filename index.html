@@ -3,125 +3,1758 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SwipePix – Konzept</title>
+  <title>SwipePix – Ziel des Projekts, User Journeys, User Flows, Personas & Designsystem</title>
+  
+  <!-- Tailwind CSS (preflight disabled to maintain pure Apple Clean base styles) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1D1D1F',
+            secondary: '#34C759',
+            greenDark: '#248A3D',
+            deleteRed: '#FF3B30',
+            favoritePink: '#FF2D55',
+            background: '#F5F5F7',
+            surface: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Mermaid.js for interactive client-side vector flowcharts (100% static) -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      securityLevel: 'loose',
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
+  </script>
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<!-- =======================================================================
+     HEADER & NAVIGATION
+     ======================================================================= -->
 <header>
   <div class="nav">
-    <a class="logo" href="#start"><img src="assets/logo.svg" alt="SwipePix Logo">SwipePix</a>
+    <a class="logo" href="#start">
+      <img src="assets/logo.svg" alt="SwipePix Logo">
+      Swipe<span>Pix</span>
+    </a>
     <nav>
-      <a href="#ziel">Ziel der Webseite</a>
-      <a href="#farben">Farbschema</a>
+      <a href="#ziel">Ziel des Projekts</a>
+      <a href="#journeys">User Journeys</a>
+      <a href="#user-flows">User Flows</a>
       <a href="#personas">Personas</a>
+      <a href="#design">Designsystem</a>
     </nav>
   </div>
 </header>
 
 <main>
-<section class="hero" id="start">
-  <div class="hero-content">
-    <span class="eyebrow">SWIPEPIX · SCHULPROJEKT</span>
-    <h1>Swipe. Sort. <span>Save.</span></h1>
-    <p>Das Konzept hinter einer einfachen und modernen App zum schnellen Sortieren und Aufräumen von Fotos und Videos.</p>
-    <a class="button" href="#ziel">Konzept ansehen ↓</a>
-  </div>
-</section>
 
-<section id="ziel" class="section">
-  <div class="section-title">
-    <span>01</span>
-    <div>
-      <p class="kicker">Ziel der Webseite</p>
-      <h2>Was ist SwipePix?</h2>
-    </div>
-  </div>
-  <div class="goal">
-    <div>
-      <h3>Fotos einfach und schnell sortieren</h3>
-      <p>Das Ziel von SwipePix ist es, das Aufräumen einer vollen Smartphone-Galerie einfacher, schneller und angenehmer zu machen.</p>
-      <p>Die App zeigt jeweils ein Foto oder Video an. Durch Wischen entscheidet der Benutzer, was damit passieren soll: nach rechts behalten, nach links zum Löschen vormerken, nach oben favorisieren oder nach unten in einen eigenen Ordner verschieben.</p>
-    </div>
-    <div class="goal-card">
-      <strong>Das Problem</strong>
-      <p>Viele Menschen haben tausende Fotos und Videos auf ihrem Smartphone und verlieren schnell den Überblick.</p>
-      <strong>Die Lösung</strong>
-      <p>SwipePix macht das Sortieren durch eine einfache Swipe-Bedienung schnell und übersichtlich.</p>
-    </div>
-  </div>
-</section>
-
-<section id="farben" class="section light">
-  <div class="section-title">
-    <span>02</span>
-    <div>
-      <p class="kicker">Design</p>
-      <h2>Farbschema</h2>
-    </div>
-  </div>
-  <p class="intro">Das Design orientiert sich an einem modernen, klaren Apple-Clean-Look mit wenigen Farben und viel Weißraum.</p>
-  <div class="colors">
-    <div class="color-card"><div class="swatch" style="background:#34C759"></div><h3>Primary Green</h3><code>#34C759</code><p>Hauptfarbe · Aktionen · Behalten</p></div>
-    <div class="color-card"><div class="swatch" style="background:#248A3D"></div><h3>Dark Green</h3><code>#248A3D</code><p>Akzente · Hover · Überschriften</p></div>
-    <div class="color-card"><div class="swatch" style="background:#1D1D1F"></div><h3>Main Text</h3><code>#1D1D1F</code><p>Haupttext · Überschriften</p></div>
-    <div class="color-card"><div class="swatch" style="background:#6E6E73"></div><h3>Secondary Text</h3><code>#6E6E73</code><p>Nebeninfos · Beschreibungen</p></div>
-    <div class="color-card"><div class="swatch" style="background:#F5F5F7"></div><h3>Background</h3><code>#F5F5F7</code><p>Seitenhintergrund</p></div>
-    <div class="color-card"><div class="swatch" style="background:#FFFFFF"></div><h3>Cards</h3><code>#FFFFFF</code><p>Karten · Inhalte</p></div>
-    <div class="color-card"><div class="swatch" style="background:#E5E5EA"></div><h3>Border</h3><code>#E5E5EA</code><p>Rahmen · Trennlinien</p></div>
-    <div class="color-card"><div class="swatch" style="background:#FF3B30"></div><h3>Delete Red</h3><code>#FF3B30</code><p>Löschen · Ablehnen</p></div>
-    <div class="color-card"><div class="swatch" style="background:#FF2D55"></div><h3>Favorite Pink</h3><code>#FF2D55</code><p>Favoriten · Wichtig</p></div>
-  </div>
-</section>
-
-<section id="personas" class="section">
-  <div class="section-title">
-    <span>03</span>
-    <div>
-      <p class="kicker">Zielgruppe</p>
-      <h2>Personas</h2>
-    </div>
-  </div>
-  <p class="intro">Drei typische Nutzer zeigen, für wen SwipePix entwickelt wird und welche Probleme die App lösen soll.</p>
-  <div class="personas">
-    <article class="persona">
-      <img src="jana.jpg" alt="Jana Müller">
-      <div class="persona-body">
-        <span class="role">Schülerin · Social-Media-Nutzerin</span>
-        <h3>Jana Müller, 17</h3>
-        <p>Jana macht täglich viele Fotos und Videos mit Freunden und für Social Media. Ihre Galerie ist unübersichtlich und das manuelle Aussortieren ist ihr zu langweilig.</p>
-        <h4>Ziele</h4>
-        <ul><li>Unnötige Fotos schnell löschen</li><li>Speicherplatz schaffen</li><li>Schöne Fotos favorisieren</li><li>Galerie übersichtlich halten</li></ul>
+  <!-- =======================================================================
+       HERO SECTION
+       ======================================================================= -->
+  <section class="hero" id="start">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">SWIPEPIX · SCHULPROJEKT SJ 2026/27 · BBS ROHRBACH</span>
+        <h1>Deine Galerie.<br><span>Endlich aufgeräumt.</span></h1>
+        <p class="lead">„Swipe. Sort. Save.“</p>
+        <p>Das Konzept einer minimalistischen Smartphone-App zum schnellen, stressfreien Aussortieren von Fotos und Videos per Wischgeste – sicher, lokal und spielerisch einfach.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#ziel">Ziel des Projekts ansehen ↓</a>
+          <a class="btn btn-secondary" href="#journeys">Journeys & Flows entdecken</a>
+        </div>
       </div>
-    </article>
 
-    <article class="persona">
-      <img src="lukas.jpg" alt="Lukas Berger">
-      <div class="persona-body">
-        <span class="role">Student · Reise- und Fotofan</span>
-        <h3>Lukas Berger, 22</h3>
-        <p>Lukas macht auf Reisen hunderte Fotos. Nach jeder Reise hat er viele ähnliche Bilder, Screenshots und Dateien, die er schnell sortieren möchte.</p>
-        <h4>Ziele</h4>
-        <ul><li>Große Mengen schnell sortieren</li><li>Doppelte Fotos finden</li><li>Screenshots löschen</li><li>Fotos in Ordner verschieben</li></ul>
-      </div>
-    </article>
+      <!-- Interaktive Smartphone Preview Card (Voll funktionsfähig) -->
+      <div class="mockup-preview-card" id="swipeSimulator">
+        <div class="mockup-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-weight: 800; color: var(--text);">SwipePix Live-Demo</span>
+            <span class="mockup-storage-pill" id="storagePill">💾 <span id="storageFreedVal">0.0 MB</span> frei</span>
+          </div>
+          <span class="pill" id="streakPill">🔥 7 Tage Streak</span>
+        </div>
 
-    <article class="persona">
-      <img src="mehmet.jpg" alt="Mehmet Yilmaz">
-      <div class="persona-body">
-        <span class="role">Projektmanager · Familienvater</span>
-        <h3>Mehmet Yilmaz, 35</h3>
-        <p>Mehmet hat Familienfotos, WhatsApp-Bilder, Videos und berufliche Dateien auf seinem Smartphone. Für ihn ist besonders wichtig, nichts Wichtiges aus Versehen zu löschen.</p>
-        <h4>Ziele</h4>
-        <ul><li>Familienfotos sicher behalten</li><li>Unnötige Dateien löschen</li><li>Speicherplatz freigeben</li><li>Gelöschte Fotos wiederherstellen können</li></ul>
+        <!-- Interaktiver Kartenstapel Container -->
+        <div class="mockup-card-deck" id="cardDeck" aria-live="polite">
+          <!-- Dynamisch per JavaScript gerendert -->
+        </div>
+
+        <!-- Kontrollknöpfe -->
+        <div class="mockup-controls">
+          <button class="control-btn btn-delete" id="btnDelete" title="Nach links: Löschen (←)" aria-label="Löschen">←</button>
+          <button class="control-btn btn-undo" id="btnUndo" title="Letzte Aktion rückgängig machen (↩)" aria-label="Undo" disabled>↩</button>
+          <button class="control-btn btn-fav" id="btnFav" title="Nach oben: Favorit (↑)" aria-label="Favorit">↑</button>
+          <button class="control-btn btn-folder" id="btnFolder" title="Nach unten: In Ordner (↓)" aria-label="In Ordner">↓</button>
+          <button class="control-btn btn-keep" id="btnKeep" title="Nach rechts: Behalten (→)" aria-label="Behalten">→</button>
+        </div>
+
+        <!-- Status- und Feedbackzeile -->
+        <div class="mockup-status-toast" id="simulatorToast">
+          Tipp: Klicke die Buttons oder wische die Karte per Maus/Touch!
+        </div>
       </div>
-    </article>
-  </div>
-</section>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       01. ZIEL DES PROJEKTS
+       ======================================================================= -->
+  <section id="ziel" class="section">
+    <div class="section-title">
+      <span>01</span>
+      <div>
+        <p class="kicker">Projektziel</p>
+        <h2>Ziel des Projekts</h2>
+      </div>
+    </div>
+
+    <div class="goal-grid">
+      <div class="goal-card">
+        <div class="goal-icon red">⚠️</div>
+        <h3>Das Ausgangsproblem</h3>
+        <p>Auf modernen Smartphones sammeln sich tausende Medien an: Serienaufnahmen, ähnliche Selfies, Screenshots von Fahrkarten und alte Messenger-Bilder. Standard-Galerien sind auf das Betrachten ausgelegt. Das manuelle Auswählen und Löschen kleiner Thumbnails ist ermüdend und wird monatelang aufgeschoben.</p>
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-icon">↔️</div>
+        <h3>Die SwipePix-Lösung</h3>
+        <p>Das Ziel von SwipePix ist es, das Bereinigen der Galerie in einen intuitiven, schnellen Ablauf zu verwandeln. Nutzer betrachten immer genau ein Foto oder Video im Vollbild. Eine einzige Handbewegung genügt, um eine verlässliche Entscheidung zu treffen – bis zu 60 Fotos pro Minute!</p>
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-icon pink">🛡️</div>
+        <h3>Der Kernnutzen</h3>
+        <p>Gigabyteweise freier Gerätespeicher ohne Angst vor Datenverlust: Gelöschte Dateien landen im zweistufigen Sicherheits-Papierkorb und können jederzeit gerettet werden. Alle Medien bleiben zu 100% lokal auf dem Smartphone (kein externer Cloud-Upload, voller Datenschutz).</p>
+      </div>
+    </div>
+
+    <!-- 4 Wischgesten Übersicht -->
+    <div style="margin-top: 48px;">
+      <h3 style="text-align: center; margin-bottom: 8px;">Die vier Wischgesten auf einen Blick</h3>
+      <p style="text-align: center; margin-bottom: 24px;">Jede Wischrichtung hat eine feste, eindeutig farblich codierte Funktion:</p>
+
+      <div class="swipe-preview-grid">
+        <div class="swipe-mini-card">
+          <span class="arrow" style="color: var(--green);">→</span>
+          <strong>Nach rechts</strong>
+          <span>Foto/Video behalten</span>
+        </div>
+
+        <div class="swipe-mini-card">
+          <span class="arrow" style="color: var(--delete);">←</span>
+          <strong>Nach links</strong>
+          <span>In Papierkorb (Löschen)</span>
+        </div>
+
+        <div class="swipe-mini-card">
+          <span class="arrow" style="color: var(--favorite);">↑</span>
+          <strong>Nach oben</strong>
+          <span>Als Favorit markieren</span>
+        </div>
+
+        <div class="swipe-mini-card">
+          <span class="arrow" style="color: var(--green-dark);">↓</span>
+          <strong>Nach unten</strong>
+          <span>In Ordner verschieben</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       02. USER JOURNEYS (LANGER-STRATEGIE MODELL)
+       ======================================================================= -->
+  <section id="journeys" class="section light">
+    <div class="section-title">
+      <span>02</span>
+      <div>
+        <p class="kicker">UX-Erlebnisreisen · Langer-Strategie Modell</p>
+        <h2>User Journeys: Emotionale Erlebnisreisen</h2>
+      </div>
+    </div>
+    <p class="intro">Die emotionale Reise unserer Zielgruppen – vom nervigen Galerie-Frust und Speicher-Voll-Warnungen bis zur spielerisch einfachen Bereinigung mit SwipePix.</p>
+
+    <!-- Quick-Nav Übersichtskarten -->
+    <div style="margin-bottom: 40px;">
+      <div style="margin-bottom: 16px; text-align: left;">
+        <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);">
+          Kernzielgruppen · Direkte Sprungmarken
+        </span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+        <!-- Quick Nav Jana -->
+        <a href="#journey-jana" style="display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid rgba(52, 199, 89, 0.3); border-radius: var(--radius-md); padding: 16px; box-shadow: var(--shadow-subtle); transition: all var(--transition-fast);">
+          <img src="assets/jana.jpg" alt="Jana" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(52, 199, 89, 0.2); flex-shrink: 0;">
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: var(--text);">Jana</strong>
+              <span class="pill" style="background: var(--green-soft); color: var(--green-dark); font-size: 10px; font-weight: 700; padding: 2px 8px;">Power User</span>
+            </div>
+            <p style="font-size: 12px; margin: 2px 0 0 0; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Schülerin · Social Media & 2-Min-Sessions</p>
+            <span style="font-size: 11px; color: var(--green); font-weight: 600;">1.1 Quick Session · 1.2 Speicher-Notfall &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Quick Nav Lukas -->
+        <a href="#journey-lukas" style="display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: var(--radius-md); padding: 16px; box-shadow: var(--shadow-subtle); transition: all var(--transition-fast);">
+          <img src="assets/lukas.jpg" alt="Lukas" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(59, 130, 246, 0.2); flex-shrink: 0;">
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: var(--text);">Lukas</strong>
+              <span class="pill" style="background: #EFF6FF; color: #1E40AF; font-size: 10px; font-weight: 700; padding: 2px 8px;">Outdoor</span>
+            </div>
+            <p style="font-size: 12px; margin: 2px 0 0 0; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Student · Reisekuration & Offline</p>
+            <span style="font-size: 11px; color: #2563EB; font-weight: 600;">2.1 Post-Trip Kuration · 2.2 Offline im Zug &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Quick Nav Mehmet -->
+        <a href="#journey-mehmet" style="display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid rgba(255, 45, 85, 0.3); border-radius: var(--radius-md); padding: 16px; box-shadow: var(--shadow-subtle); transition: all var(--transition-fast);">
+          <img src="assets/mehmet.jpg" alt="Mehmet" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255, 45, 85, 0.2); flex-shrink: 0;">
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: var(--text);">Mehmet</strong>
+              <span class="pill" style="background: var(--favorite-soft); color: var(--favorite); font-size: 10px; font-weight: 700; padding: 2px 8px;">Sicherheit</span>
+            </div>
+            <p style="font-size: 12px; margin: 2px 0 0 0; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Familienvater · Schutz & WhatsApp-Cleanup</p>
+            <span style="font-size: 11px; color: var(--favorite); font-weight: 600;">3.1 Familienarchiv · 3.2 4K-Videorettung &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- PERSONA 1: JANA MÜLLER JOURNEYS -->
+    <div id="journey-jana" style="margin-bottom: 56px; scroll-margin-top: 100px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--line);">
+        <img src="assets/jana.jpg" alt="Jana Müller" style="width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(52, 199, 89, 0.3);">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h3 style="margin: 0; font-size: 24px;">Persona 1: Jana Müller</h3>
+            <span class="pill" style="background: var(--green); color: #fff; font-size: 11px;">Kernzielgruppe</span>
+          </div>
+          <p style="margin: 4px 0 0 0; font-size: 14px;">Schülerin (17) &bull; Fokus: Schnelligkeit, Social Media & Streaks</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <!-- Journey 1.1 -->
+        <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-subtle); display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <h4 style="margin: 0; font-size: 18px;">Journey 1.1: Die 2-Minuten-Aufräum-Session</h4>
+            <span class="pill" style="background: #EFF6FF; color: #1E40AF; font-size: 11px;">Standard</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 20px;">
+            <strong>Ziel:</strong> In einer 2-Minuten-Pause 50–100 unnötige Selfies löschen, um den Speicher frei zu halten (JTBD: Schnelle Befreiung ohne Suchaufwand).
+          </p>
+
+          <ul style="list-style: none; padding-left: 20px; border-left: 2px solid var(--line); margin: 0 0 24px 6px; flex-grow: 1; display: flex; flex-direction: column; gap: 16px;">
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--green);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Awareness & Einstieg</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Push-Notification: <em>„🔥 Halte deinen Streak! 35 Fotos von gestern warten.“</em> &rarr; Tippt direkt auf die Meldung.</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--green);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Consideration & Auswahl</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Wählt Modus „Fotos der letzten 24 Stunden“ &rarr; Erstes Foto erscheint sofort groß im Vollbild ohne Menüs.</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--green);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Decision & Core Action</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Wischt im Rhythmus: Links (Löschen) für Serien-Selfies, Rechts (Behalten), Oben (Favorit für Instagram). 60 Fotos in 75 Sekunden!</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--text);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Retention & Belohnung</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Abschluss-Screen: <em>„+480 MB freigegeben & Streak auf Tag 8 erhöht! 🎉“</em>. Jana schließt die App zufrieden.</span>
+            </li>
+          </ul>
+
+          <div style="background: var(--green-soft); border: 1px solid rgba(52, 199, 89, 0.3); border-radius: var(--radius-sm); padding: 14px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--green-dark); display: block; margin-bottom: 4px;">Magic Moment ✨</span>
+            <p style="font-size: 13.5px; color: var(--text); margin: 0;">Das Wischen fühlt sich nicht wie Arbeit an, sondern wie ein schnelles Handyspiel. Kein schlechtes Gewissen mehr wegen überfüllter Alben.</p>
+          </div>
+        </div>
+
+        <!-- Journey 1.2 -->
+        <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-subtle); display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <h4 style="margin: 0; font-size: 18px;">Journey 1.2: Akuter Speicher-Voll-Notfall</h4>
+            <span class="pill" style="background: #FEF3C7; color: #92400E; font-size: 11px;">Edge Case</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 16px;">
+            <strong>Szenario:</strong> Jana möchte spontan mit Freundinnen ein TikTok-Video aufnehmen, doch iOS blockiert mit <em>„Speicher fast voll“</em>. Sie benötigt sofort 2 GB Platz.
+          </p>
+
+          <div style="margin-bottom: 16px;">
+            <strong style="display: block; font-size: 13.5px; color: var(--text); margin-bottom: 6px;">Frustrationen (Top 3)</strong>
+            <ul style="margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
+              <li>Kamera blockiert im besten Moment spontaner Treffen</li>
+              <li>Manuelles Löschen in Apple Fotos ist viel zu mühsam</li>
+              <li>Panik, bei blindem Schnell-Löschen ein wichtiges Bild zu verlieren</li>
+            </ul>
+          </div>
+
+          <div style="margin-bottom: 20px; flex-grow: 1;">
+            <strong style="display: block; font-size: 13.5px; color: var(--text); margin-bottom: 6px;">UX-Lösung von SwipePix</strong>
+            <p style="font-size: 13.5px; color: var(--muted); margin: 0;">
+              Der dedizierte Notfall-Modus <strong>„Größte Speicherfresser“</strong> serviert Videos und lange Serienaufnahmen zuerst. Mit 20 Wischbewegungen sind in unter 60 Sekunden über 2 GB freigeschaufelt.
+            </p>
+          </div>
+
+          <div style="background: #F4F4F6; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px;">AI Test Task 🤖</span>
+            <code style="display: block; font-size: 12.5px; background: #fff; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); color: var(--text);">
+              „Finde automatisch die 15 Serien-Selfies der letzten Stunde, wische die 14 verwackelten nach links und hebe das schärfste als Favorit hervor.“
+            </code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSONA 2: LUKAS BERGER JOURNEYS -->
+    <div id="journey-lukas" style="margin-bottom: 56px; scroll-margin-top: 100px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--line);">
+        <img src="assets/lukas.jpg" alt="Lukas Berger" style="width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(59, 130, 246, 0.3);">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h3 style="margin: 0; font-size: 24px;">Persona 2: Lukas Berger</h3>
+            <span class="pill" style="background: #2563EB; color: #fff; font-size: 11px;">Reise & Outdoor</span>
+          </div>
+          <p style="margin: 4px 0 0 0; font-size: 14px;">Student (22) &bull; Fokus: Urlaubs-Kuration, Offline-Nutzung & Alben</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <!-- Journey 2.1 -->
+        <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-subtle); display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <h4 style="margin: 0; font-size: 18px;">Journey 2.1: Der Post-Trip Urlaubs-Sortierer</h4>
+            <span class="pill" style="background: #EFF6FF; color: #1E40AF; font-size: 11px;">Standard</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 20px;">
+            <strong>Ziel:</strong> Im Zug nach Hause 450 Urlaubsfotos so sortieren, dass nur echte Highlights bleiben (JTBD: Sauberes Reisealbum erstellen).
+          </p>
+
+          <ul style="list-style: none; padding-left: 20px; border-left: 2px solid var(--line); margin: 0 0 24px 6px; flex-grow: 1; display: flex; flex-direction: column; gap: 16px;">
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid #2563EB;"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Awareness & Einstieg</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Sitzt im Zug auf der Heimreise von den Bergen. Erkennt das Chaos von 450 unberührten Fotos &rarr; Startet SwipePix.</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid #2563EB;"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Consideration & Albumwahl</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Wählt das Album „Wandern Dolomiten“ &rarr; Stellt die Sortierung auf <em>Chronologisch</em>, um die Tour Schritt für Schritt nachzuerleben.</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid #2563EB;"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Decision & Core Action</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Wischt: Duplikate nach links (Löschen), Panoramen nach oben (Favorit), besondere Serien nach unten (Ordner „Fotobuch-Print“).</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--text);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Retention & Fertiges Album</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Album auf 68 knackige Top-Motive geschrumpft. Lukas teilt das fertige Album noch im Zug mit seinen Wanderkollegen.</span>
+            </li>
+          </ul>
+
+          <div style="background: #EFF6FF; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: var(--radius-sm); padding: 14px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #1E40AF; display: block; margin-bottom: 4px;">Magic Moment ✨</span>
+            <p style="font-size: 13.5px; color: var(--text); margin: 0;">Lukas hat die zeitraubende Kuration bereits vor der Ankunft daheim erledigt. Statt wochenlang unberührter Alben hat er direkt fertige Erinnerungen zum Vorzeigen.</p>
+          </div>
+        </div>
+
+        <!-- Journey 2.2 -->
+        <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-subtle); display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <h4 style="margin: 0; font-size: 18px;">Journey 2.2: Offline im Zug & Funkloch</h4>
+            <span class="pill" style="background: #FEF3C7; color: #92400E; font-size: 11px;">Edge Case</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 16px;">
+            <strong>Szenario:</strong> Funkloch im Gebirge oder Flugmodus im Flugzeug. Cloud-Galerien verweigern das Laden hochauflösender Bilder oder stürzen ab.
+          </p>
+
+          <div style="margin-bottom: 16px;">
+            <strong style="display: block; font-size: 13.5px; color: var(--text); margin-bottom: 6px;">Frustrationen (Top 3)</strong>
+            <ul style="margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
+              <li>Standard-Galerien ruckeln oder zeigen unscharfe Thumbnails ohne Internet</li>
+              <li>Medien können ohne Cloud-Verbindung nicht in Alben abgelegt werden</li>
+              <li>Akku entlädt sich schnell durch ständige Verbindungsversuche</li>
+            </ul>
+          </div>
+
+          <div style="margin-bottom: 20px; flex-grow: 1;">
+            <strong style="display: block; font-size: 13.5px; color: var(--text); margin-bottom: 6px;">UX-Lösung von SwipePix</strong>
+            <p style="font-size: 13.5px; color: var(--muted); margin: 0;">
+              SwipePix funktioniert zu <strong>100% lokal on-device</strong>: Alle Bilder und Videos werden direkt aus dem Telefonspeicher geladen. Zero Internet nötig – volle 60 FPS Wisch-Performance selbst im Flugmodus.
+            </p>
+          </div>
+
+          <div style="background: #F4F4F6; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px;">AI Test Task 🤖</span>
+            <code style="display: block; font-size: 12.5px; background: #fff; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); color: var(--text);">
+              „Puffere 200 hochauflösende 24-MP-Fotos im Flugmodus lückenlos vor, sodass beim schnellen Weiterwischen null Ladeverzögerung spürbar ist.“
+            </code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSONA 3: MEHMET YILMAZ JOURNEYS -->
+    <div id="journey-mehmet" style="margin-bottom: 16px; scroll-margin-top: 100px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--line);">
+        <img src="assets/mehmet.jpg" alt="Mehmet Yilmaz" style="width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255, 45, 85, 0.3);">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h3 style="margin: 0; font-size: 24px;">Persona 3: Mehmet Yilmaz</h3>
+            <span class="pill" style="background: var(--favorite); color: #fff; font-size: 11px;">Familie & Sicherheit</span>
+          </div>
+          <p style="margin: 4px 0 0 0; font-size: 14px;">Projektmanager & Familienvater (35) &bull; Fokus: Sicherheit, Datenschutz & WhatsApp-Cleanup</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <!-- Journey 3.1 -->
+        <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-subtle); display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <h4 style="margin: 0; font-size: 18px;">Journey 3.1: Der geschützte Familien-Foto-Cleanup</h4>
+            <span class="pill" style="background: #EFF6FF; color: #1E40AF; font-size: 11px;">Standard</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 20px;">
+            <strong>Ziel:</strong> Familienfotos bewahren, aber hunderte empfangene Memes gefahrlos löschen (JTBD: Speicherplatz sparen ohne Risiko für Familienerinnerungen).
+          </p>
+
+          <ul style="list-style: none; padding-left: 20px; border-left: 2px solid var(--line); margin: 0 0 24px 6px; flex-grow: 1; display: flex; flex-direction: column; gap: 16px;">
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--favorite);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Awareness & Einstieg</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">iCloud meldet 95% Speicherauslastung. Mehmet will kein teures 2-TB-Abo für 9,99 €/Monat abschließen &rarr; Öffnet SwipePix.</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--favorite);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Consideration & Datenschutz-Check</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Wählt das Album „WhatsApp Medien“ &rarr; Sieht den Datenschutz-Hinweis: <em>„100% lokal auf diesem Gerät · Kein externer Cloud-Upload“</em>. Das beruhigt ihn sofort.</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--favorite);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Decision & Core Action</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Wischt Spam nach links (Papierkorb). Bei einem Foto seiner Tochter wischt er versehentlich zu schnell: Ein Tap auf <strong>Undo (↩)</strong> stellt es sofort wieder her.</span>
+            </li>
+            <li style="position: relative;">
+              <span style="position: absolute; left: -27px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 2px solid var(--text);"></span>
+              <strong style="display: block; font-size: 14px; color: var(--text);">Retention & Sicherer Papierkorb</strong>
+              <span style="font-size: 13.5px; color: var(--muted);">Im zweistufigen Papierkorb prüft Mehmet alle 340 aussortierten Dateien, sieht 5,2 GB freigegebenen Speicher und bestätigt das finale Löschen mit ruhigem Gewissen.</span>
+            </li>
+          </ul>
+
+          <div style="background: var(--favorite-soft); border: 1px solid rgba(255, 45, 85, 0.3); border-radius: var(--radius-sm); padding: 14px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--favorite); display: block; margin-bottom: 4px;">Magic Moment ✨</span>
+            <p style="font-size: 13.5px; color: var(--text); margin: 0;">Der zweistufige Papierkorb und der sichtbare Undo-Button nehmen Mehmet jede Versagensangst. Er behält die volle Kontrolle und weiß, dass keine unbezahlbaren Erinnerungen verloren gehen.</p>
+          </div>
+        </div>
+
+        <!-- Journey 3.2 -->
+        <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-subtle); display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <h4 style="margin: 0; font-size: 18px;">Journey 3.2: 4K-Videorettung & Fehlwisch-Schutz</h4>
+            <span class="pill" style="background: #FEF3C7; color: #92400E; font-size: 11px;">Edge Case</span>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 16px;">
+            <strong>Szenario:</strong> Mehmet sortiert in Hektik und markiert versehentlich das 4K-Video der Einschulung seiner Tochter zum Löschen.
+          </p>
+
+          <div style="margin-bottom: 16px;">
+            <strong style="display: block; font-size: 13.5px; color: var(--text); margin-bottom: 6px;">Frustrationen (Top 3)</strong>
+            <ul style="margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
+              <li>Panik vor unwiederbringlichem Verlust unbezahlbarer Familienmeilensteine</li>
+              <li>Unklare Lösch-Dialoge in anderen Apps ohne Sicherheitsnetz</li>
+              <li>Versehentliches Bestätigen bei zu schnellem Antippen</li>
+            </ul>
+          </div>
+
+          <div style="margin-bottom: 20px; flex-grow: 1;">
+            <strong style="display: block; font-size: 13.5px; color: var(--text); margin-bottom: 6px;">UX-Lösung von SwipePix</strong>
+            <p style="font-size: 13.5px; color: var(--muted); margin: 0;">
+              SwipePix kennzeichnet Medien über 100 MB und Videos mit einer <strong>separaten Sicherheitswarnung</strong> im Papierkorb. Bevor große Videodateien gelöscht werden, fragt das System gesondert nach und bietet eine sofortige 1-Tap-Wiederherstellung.
+            </p>
+          </div>
+
+          <div style="background: #F4F4F6; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px;">AI Test Task 🤖</span>
+            <code style="display: block; font-size: 12.5px; background: #fff; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); color: var(--text);">
+              „Prüfe vor dem endgültigen Leeren des Papierkorbs, ob Videos mit mehr als 200 MB oder als Favoriten markierte Medien enthalten sind, und fordere eine separate Sicherheits-Bestätigung an.“
+            </code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       03. INTEGRATED USER FLOWS (MERMAID-DIAGRAMME)
+       ======================================================================= -->
+  <section id="user-flows" class="section">
+    <div class="section-title">
+      <span>03</span>
+      <div>
+        <p class="kicker">Prozess-Architektur · Langer-Strategie Modell</p>
+        <h2>Integrated User Flows: Interaktive Prozessketten</h2>
+      </div>
+    </div>
+    <p class="intro">Visualisierung der integrierten Nutzerpfade – vom ersten Auslöser über die Wisch-Entscheidungsschleife bis zur sicheren Freigabe des Speichers.</p>
+
+    <!-- 2-Spalten Erläuterung: Logik hinter den Pfaden -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 48px;">
+      <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-subtle);">
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Vom Erleben zum Handeln: Die Logik hinter den Pfaden</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6;">
+          Während unsere <strong>User Journeys</strong> das emotionale Gesamterlebnis und die Frustrationen definieren, übersetzen die <strong>User Flows</strong> diese Anforderungen in belastbare, intuitive Interaktionspfade. Hier wird visualisiert, wie Jana, Lukas und Mehmet SwipePix bedienen – Geste für Geste, Entscheidung für Entscheidung.
+        </p>
+      </div>
+
+      <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-subtle);">
+        <p style="margin-bottom: 12px; font-size: 15px; line-height: 1.6;">
+          Unser zentraler Fokus liegt auf der <strong>Eliminierung von Reibungsverlusten</strong>. Basierend auf den Frustrationen der Personas haben wir ein intelligentes Routing entwickelt: Schnelligkeit und unterbrechungsfreie Daumenbedienung für Jana und Lukas, sowie ein lückenloses Sicherheitsnetz mit Papierkorb und Datenschutz für Mehmet.
+        </p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--green-dark); font-weight: 600;">
+          So greifen spielerische Leichtigkeit und absolute Datensicherheit nahtlos ineinander.
+        </p>
+      </div>
+    </div>
+
+    <!-- Strategische Flow-Logik & Routing (2 Spalten + Edge Case Box) -->
+    <div style="margin-bottom: 48px;">
+      <h3 style="text-align: center; margin-bottom: 8px;">Strategische Flow-Logik & Routing</h3>
+      <p style="text-align: center; margin-bottom: 32px;">Zwei dynamische Routing-Pfade verhindern Frustrationen und maximieren den Nutzen je nach Situation:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 24px;">
+        <!-- Efficiency Routing -->
+        <div style="background: var(--green-soft); border: 1px solid rgba(52, 199, 89, 0.3); border-radius: var(--radius-lg); padding: 28px;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <span style="font-size: 24px;">⚡</span>
+            <h4 style="margin: 0; font-size: 18px; color: var(--green-dark);">Efficiency Routing (Jana / Lukas)</h4>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 16px; color: var(--text);">Optimiert für schnelle Sessions mit Daumenbedienung, hohem Durchsatz und ohne störende Zwischenabfragen.</p>
+          <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--text); display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>1-Hand-Gesten-Loop:</strong> Bis zu 60 Fotos pro Minute im Vollbild ohne Unterbrechung.</li>
+            <li><strong>Instant Undo (↩):</strong> Sofortiger Rückgängig-Puffer mit 1 Klick bei versehentlichem Wisch.</li>
+            <li><strong>Offline Caching:</strong> 100% flüssiges Weiterswipen ohne Wartezeit, selbst im Flugmodus.</li>
+          </ul>
+        </div>
+
+        <!-- Safety & Value Routing -->
+        <div style="background: #EFF6FF; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: var(--radius-lg); padding: 28px;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <span style="font-size: 24px;">🛡️</span>
+            <h4 style="margin: 0; font-size: 18px; color: #1E40AF;">Safety & Value Routing (Mehmet)</h4>
+          </div>
+          <p style="font-size: 14px; margin-bottom: 16px; color: var(--text);">Optimiert für maximale Datensicherheit, Kontrolle vor Datenverlust und Schutz wertvoller Familienerinnerungen.</p>
+          <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--text); display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Zweistufiger Papierkorb:</strong> Gelöschte Dateien werden erst im Papierkorb gesammelt und separat bestätigt.</li>
+            <li><strong>100% Lokaler Datenschutz:</strong> Garantierte On-Device-Verarbeitung ohne Cloud-Upload privater Kinderfotos.</li>
+            <li><strong>4K-Video-Warnfilter:</strong> Deutliche visuelle Kennzeichnung vor dem Löschen großer Videodateien (>100 MB).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Edge Case Box (Dark Apple Slate) -->
+      <div style="background: #1D1D1F; border-radius: var(--radius-lg); padding: 28px; color: #fff; box-shadow: var(--shadow-card);">
+        <h4 style="margin: 0 0 10px 0; font-size: 17px; display: flex; align-items: center; gap: 10px;">
+          <span style="color: var(--delete); font-size: 20px;">⚠️</span> Intelligentes Edge Case Handling
+        </h4>
+        <p style="margin: 0; font-size: 14px; color: #D1D1D6; line-height: 1.6;">
+          Unsere Flows antizipieren Fehler: Wischt Jana in der Hektik ein gutes Selfie versehentlich nach links, erlaubt der <strong>Undo-Puffer (bis zu 20 Aktionen)</strong> eine blitzschnelle Wiederherstellung. Reist Lukas durch ein Funkloch im Gebirge, lädt der On-Device-Cache die Bilder nahtlos vor. Und droht Mehmet das Löschen eines hochauflösenden 4K-Familienvideos, verlangt das System eine <strong>explizite Bestätigung</strong> im Papierkorb.
+        </p>
+      </div>
+    </div>
+
+    <!-- MERMAID DIAGRAMME -->
+    <div style="display: flex; flex-direction: column; gap: 40px;">
+
+      <!-- Flow 1: Integrierter Kern-Flow (Jana & Lukas) -->
+      <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-subtle);">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <span class="pill" style="background: var(--green-soft); color: var(--green-dark); font-size: 11px; margin-bottom: 8px;">Integrierter Flow 1</span>
+          <h3 style="margin: 0 0 8px 0; font-size: 22px;">Kern-Flow: Galerie-Bereinigung & Wisch-Entscheidung (Jana & Lukas)</h3>
+          <p style="margin: 0; font-size: 14px;">Visualisiert den kontinuierlichen Wisch-Loop für schnelle Aufräumsessions und Reisekuration.</p>
+        </div>
+
+        <div class="mermaid">
+          graph TD
+          subgraph "Phase 1: Entry & Trigger"
+          JanaStart("<b>Jana (17)</b><br />Push-Reminder: Streak halten"):::jana
+          LukasStart("<b>Lukas (22)</b><br />Heimreise im Zug / Galerie öffnen"):::lukas
+          end
+
+          subgraph "Phase 2: Need & Modus-Wahl"
+          JanaStart --> JanaChoice{Modus:<br />Heutige Medien?}:::jana
+          LukasStart --> LukasChoice{Album:<br />Urlaub Dolomiten?}:::lukas
+          end
+
+          subgraph "Phase 3: Vollbild-Wisch-Entscheidung"
+          JanaChoice --> SwipeLoop("<b>Vollbild-Vorschau</b><br />1 Foto im Fokus (60 FPS)"):::common
+          LukasChoice --> SwipeLoop
+
+          SwipeLoop --> Decision{Wischgeste<br />ausführen?}:::common
+
+          Decision --|NACH LINKS|--> ActTrash("<b>Löschen</b><br />In temporären Papierkorb"):::actionDelete
+          Decision --|NACH RECHTS|--> ActKeep("<b>Behalten</b><br />Foto bleibt in Galerie"):::actionKeep
+          Decision --|NACH OBEN|--> ActFav("<b>Favorit</b><br />Herz-Markierung setzen"):::actionFav
+          Decision --|NACH UNTEN|--> ActFolder("<b>Ordner</b><br />In Zielalbum verschieben"):::actionFolder
+          end
+
+          subgraph "Phase 4: Instant Undo & Korrektur"
+          ActTrash --> UndoCheck{Fehlwisch<br />bemerkt?}:::common
+          UndoCheck --|JA / TIPP AUF UNDO|--> UndoAction("<b>Undo (↩)</b><br />Foto sofort wiederhergestellt"):::common
+          UndoAction --> SwipeLoop
+          UndoCheck --|NEIN / WEITER|--> NextPhoto("<b>Nächstes Foto</b><br />Puffer lädt verzögerungsfrei"):::common
+          ActKeep --> NextPhoto
+          ActFav --> NextPhoto
+          ActFolder --> NextPhoto
+          end
+
+          subgraph "Phase 5: Abschluss & Belohnung"
+          NextPhoto --> SessionEnd{Alle Fotos<br />gesichtet?}:::common
+          SessionEnd --|NEIN|--> SwipeLoop
+          SessionEnd --|JA|--> Summary("<b>Zusammenfassung</b><br />Papierkorb prüfen & bestätigen"):::common
+          Summary --> Reward("<b>Erfolg erzielt!</b><br />+480 MB frei · Streak Tag 8 gesichert 🎉"):::jana
+          end
+
+          classDef jana fill:#ecfdf5,stroke:#34C759,stroke-width:2px,color:#065f46
+          classDef lukas fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+          classDef common fill:#ffffff,stroke:#64748b,stroke-width:1.5px,color:#0f172a
+          classDef actionDelete fill:#fff1f0,stroke:#FF3B30,stroke-width:2px,color:#991b1b
+          classDef actionKeep fill:#ecfdf5,stroke:#34C759,stroke-width:2px,color:#065f46
+          classDef actionFav fill:#fff0f4,stroke:#FF2D55,stroke-width:2px,color:#9f1239
+          classDef actionFolder fill:#f0fdf4,stroke:#248A3D,stroke-width:2px,color:#14532d
+        </div>
+      </div>
+
+      <!-- Flow 2: Sicherheits- & Familienarchiv-Flow (Mehmet) -->
+      <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-subtle);">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <span class="pill" style="background: var(--favorite-soft); color: var(--favorite); font-size: 11px; margin-bottom: 8px;">Integrierter Flow 2</span>
+          <h3 style="margin: 0 0 8px 0; font-size: 22px;">Sicherheits- & Familienarchiv-Flow (Mehmet Yilmaz)</h3>
+          <p style="margin: 0; font-size: 14px;">Fokus auf 100% lokalen Datenschutz, zweistufigen Papierkorb und Schutz vor versehentlichem Löschen von 4K-Videos.</p>
+        </div>
+
+        <div class="mermaid">
+          graph TD
+          subgraph "Phase 1: Entry & Trigger"
+          MehmetStart("<b>Mehmet (35)</b><br />iCloud-Speicherwarnung: 95% voll"):::mehmet
+          MehmetStart --> LocalCheck("<b>Datenschutz-Prüfung</b><br />100% On-Device · Keine Cloud"):::mehmet
+          end
+
+          subgraph "Phase 2: Ordnerwahl & Vorab-Filter"
+          LocalCheck --> SelectSource("<b>Quelle wählen:</b><br />WhatsApp-Medien & Memes"):::common
+          SelectSource --> ScanMedia("<b>Speicheranalyse:</b><br />Fotos vs. große 4K-Videos"):::common
+          end
+
+          subgraph "Phase 3: Gezieltes Aussortieren"
+          ScanMedia --> SwipeMemes("<b>Memes & Spam</b><br />Wischt nach links (Papierkorb)"):::actionDelete
+          ScanMedia --> KeepFamily("<b>Kinderfotos & Meilensteine</b><br />Wischt nach rechts (Behalten)"):::actionKeep
+          ScanMedia --> OrganizeAlbum("<b>Familienarchiv</b><br />Wischt nach unten (Ordner 'Kinder 2026')"):::actionFolder
+          end
+
+          subgraph "Phase 4: Sicherheits-Papierkorb & Video-Schutz"
+          SwipeMemes --> TrashReview("<b>Zweistufiger Papierkorb</b><br />Liste aller 340 gelöschten Medien"):::common
+          TrashReview --> BigVideoCheck{Enthält Videos<br />> 100 MB?}:::common
+          BigVideoCheck --|JA / WARNUNG|--> VideoWarning("<b>Sicherheits-Abfrage:</b><br />'Einschulung.mp4' wirklich löschen?"):::actionFav
+          VideoWarning --|AUS VERSEHEN|--> RestoreSingle("<b>1-Tap Wiederherstellung</b><br />Video bleibt gerettet"):::actionKeep
+          VideoWarning --|JA / BESTÄTIGEN|--> FinalTrash("<b>Endgültiges Löschen</b><br />Freigabe im System"):::actionDelete
+          BigVideoCheck --|NEIN|--> FinalTrash
+          end
+
+          subgraph "Phase 5: Conversion & Speicher-Erfolg"
+          FinalTrash --> ResultClean("<b>Speicherziel erreicht!</b><br />5,2 GB freigegeben · iCloud-Abo vermieden"):::mehmet
+          end
+
+          classDef mehmet fill:#fff0f4,stroke:#FF2D55,stroke-width:2px,color:#9f1239
+          classDef common fill:#ffffff,stroke:#64748b,stroke-width:1.5px,color:#0f172a
+          classDef actionDelete fill:#fff1f0,stroke:#FF3B30,stroke-width:2px,color:#991b1b
+          classDef actionKeep fill:#ecfdf5,stroke:#34C759,stroke-width:2px,color:#065f46
+          classDef actionFav fill:#fff0f4,stroke:#FF2D55,stroke-width:2px,color:#9f1239
+          classDef actionFolder fill:#f0fdf4,stroke:#248A3D,stroke-width:2px,color:#14532d
+        </div>
+      </div>
+
+      <!-- Flow 3: Deep-Dive Entscheidungsbaum -->
+      <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-subtle);">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <span class="pill" style="background: #F4F4F6; color: var(--muted); font-size: 11px; margin-bottom: 8px;">Deep-Dive Prozesskette</span>
+          <h3 style="margin: 0 0 8px 0; font-size: 22px;">Detail-Entscheidungsbaum: Wisch-Schleife, Undo-Stack & Papierkorb</h3>
+          <p style="margin: 0; font-size: 14px;">Exakte Abbildung der Systemlogik bei Fehlwischungen, Speicherberechnung und Session-Abschluss.</p>
+        </div>
+
+        <div class="mermaid">
+          graph TD
+          Start([App-Start: Foto geladen]):::common
+
+          ActionType{Entscheidung<br />des Nutzers?}:::common
+          Start --> ActionType
+
+          ActionType -->|Swipe Rechts| Keep(Foto als 'Behalten' markiert):::actionKeep
+          ActionType -->|Swipe Links| Trash(Foto in temporären Papierkorb):::actionDelete
+          ActionType -->|Swipe Oben| Fav(Foto als 'Favorit' markiert):::actionFav
+          ActionType -->|Swipe Unten| Move(Zielordner wählen & verschieben):::actionFolder
+
+          Keep --> Puffer(Aktion in Undo-Stack speichern):::common
+          Trash --> Puffer
+          Fav --> Puffer
+          Move --> Puffer
+
+          Puffer --> ErrorCheck{Sofortiger<br />Fehlwisch?}:::common
+
+          ErrorCheck -->|Ja / Tap auf Undo| UndoPop(Letzte Aktion aus Stack nehmen & rückgängig machen):::common
+          UndoPop --> Start
+
+          ErrorCheck -->|Nein / Weiterswipen| NextCheck{Weitere Fotos<br />in Warteschlange?}:::common
+
+          NextCheck -->|Ja| Start
+          NextCheck -->|Nein / Session beendet| SummaryScreen(Zusammenfassung: Freier Speicher & Papierkorb):::common
+
+          SummaryScreen --> FinalConfirm{Papierkorb<br />bestätigen?}:::common
+
+          FinalConfirm -->|Ja| Flush(Dateien endgültig löschen & Speicher im OS freigeben):::actionDelete
+          FinalConfirm -->|Nein / Prüfen| Review(Einzelne Medien wiederherstellen):::actionKeep
+
+          Review --> SummaryScreen
+          Flush --> Done([Fertig: Streak aktualisiert & Galerie aufgeräumt]):::actionKeep
+
+          classDef common fill:#ffffff,stroke:#64748b,stroke-width:1.5px,color:#0f172a
+          classDef actionDelete fill:#fff1f0,stroke:#FF3B30,stroke-width:2px,color:#991b1b
+          classDef actionKeep fill:#ecfdf5,stroke:#34C759,stroke-width:2px,color:#065f46
+          classDef actionFav fill:#fff0f4,stroke:#FF2D55,stroke-width:2px,color:#9f1239
+          classDef actionFolder fill:#f0fdf4,stroke:#248A3D,stroke-width:2px,color:#14532d
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       04. PERSONAS (AUSFÜHRLICH MIT JTBD & EMPATHY MAP)
+       ======================================================================= -->
+  <section id="personas" class="section light">
+    <div class="section-title">
+      <span>04</span>
+      <div>
+        <p class="kicker">Zielgruppen-Forschung</p>
+        <h2>Personas: Für wen wird SwipePix entwickelt?</h2>
+      </div>
+    </div>
+    <p class="intro">Drei fundierte Personas bilden unsere zentralen Zielgruppen ab. Jedes Profil enthält Situation, Bedürfnisse, Ziele, Frustrationen, Jobs to be Done (JTBD) und eine vollständige Empathy Map.</p>
+
+    <!-- Persona 1: Jana Müller -->
+    <div class="persona-full-card">
+      <div class="persona-top">
+        <img class="persona-photo" src="assets/jana.jpg" alt="Jana Müller, 17 Jahre, Schülerin">
+        <div class="persona-intro">
+          <span class="persona-role-badge">Schülerin · Social-Media-Power-Userin</span>
+          <h3>Jana Müller, 17 Jahre</h3>
+          <p class="persona-quote">„Ich mache ständig Fotos und Snaps mit Freundinnen. Mein iPhone-Speicher ist dauernd voll, aber das manuelle Löschen in der Galerie ist mir viel zu langweilig.“</p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="pill">iPhone 14 (128 GB)</span>
+            <span class="pill">Tägl. Screentime: 4.5 Std.</span>
+            <span class="pill">Galerie: 8.400+ Medien</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona-detail-grid">
+        <div class="persona-box">
+          <h4>📍 Situation & Alltag</h4>
+          <p>Jana besucht die 11. Schulstufe eines Gymnasiums. Ihr Smartphone ist der Mittelpunkt ihres Alltags für Schule, Freunde und Hobbys. Sie postet täglich auf Instagram, TikTok, Snapchat und BeReal. Bei Treffen entstehen unzählige Serienbilder und Videos, von denen nur wenige gebraucht werden.</p>
+        </div>
+
+        <div class="persona-box">
+          <h4>💡 Bedürfnisse</h4>
+          <ul>
+            <li>Extrem schnelle und unkomplizierte Bedienung ohne lange Menüs</li>
+            <li>Aufräumen in kurzen 2-Minuten-Pausen zwischen Unterrichtsstunden</li>
+            <li>Gamification-Elemente wie Streaks und Erfolge zur Motivation</li>
+            <li>Keine komplizierte Dateiablage – einfach wischen und fertig</li>
+          </ul>
+        </div>
+
+        <div class="persona-box">
+          <h4>🎯 Ziele</h4>
+          <ul>
+            <li>Unnötige Fotos rasch löschen, um Speicherplatz für neue Videos zu schaffen</li>
+            <li>Verwackelte Aufnahmen und alte Screenshots mühelos entfernen</li>
+            <li>Die besten Schnappschüsse direkt als Favoriten markieren</li>
+          </ul>
+        </div>
+
+        <div class="persona-box">
+          <h4>⚠️ Frustrationen</h4>
+          <ul>
+            <li>Die iOS-Warnung „Speicher fast voll“ blockiert spontane Videoaufnahmen</li>
+            <li>Viele fast identische Selfies machen die Fotogalerie unübersichtlich</li>
+            <li>Klassisches Auswählen und Löschen in Apple Fotos dauert viel zu lange</li>
+          </ul>
+        </div>
+
+        <!-- JTBD Box -->
+        <div class="jtbd-box">
+          <h4>Jobs to be Done (JTBD)</h4>
+          <div class="jtbd-statement">
+            <strong>Job 1:</strong> „Wenn mein Smartphone-Speicher voll ist und ich neue Videos aufnehmen will, möchte ich in 2 Minuten 100 alte Fotos löschen, damit ich sofort weiterfilmen kann, ohne am PC anschließen zu müssen.“
+          </div>
+          <div class="jtbd-statement">
+            <strong>Job 2:</strong> „Wenn ich von einem Treffen mit Freundinnen nach Hause komme, möchte ich blitzschnell die 3 besten Gruppenfotos favorisieren und die restlichen 30 Serienbilder mit einem Wisch verwerfen.“
+          </div>
+        </div>
+      </div>
+
+      <!-- Empathy Map -->
+      <div class="empathy-section">
+        <div class="empathy-title">Empathy Map · Jana Müller</div>
+        <div class="empathy-grid">
+          <div class="empathy-card">
+            <strong>Sagt</strong>
+            <p>„Mein iPhone hat schon wieder keinen Speicher mehr!“<br>„Ich müsste dringend mal meine 8.000 Fotos durchgehen.“</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Denkt</strong>
+            <p>„Welches von den 15 gleichen Selfies sieht am besten aus?“<br>„Hoffentlich geht das Aufräumen schnell und fühlt sich nicht wie Arbeit an.“</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Fühlt</strong>
+            <p>Genervt von ständigen Speicher-Warnungen, erleichtert und stolz, wenn durch Streaks Ordnung entsteht.</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Tut</strong>
+            <p>Nimmt täglich dutzende neue Bilder auf, teilt Stories und schiebt das Sortieren wochenlang vor sich her.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Persona 2: Lukas Berger -->
+    <div class="persona-full-card">
+      <div class="persona-top">
+        <img class="persona-photo" src="assets/lukas.jpg" alt="Lukas Berger, 22 Jahre, Student">
+        <div class="persona-intro">
+          <span class="persona-role-badge">Student · Reise- & Outdoor-Fan</span>
+          <h3>Lukas Berger, 22 Jahre</h3>
+          <p class="persona-quote">„Nach jedem Wochenendtrip habe ich hunderte Fotos. Ich will sie im Zug nach Hause schnell sortieren, damit nur die besten Motive übrig bleiben.“</p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="pill">Pixel 8 Pro (256 GB)</span>
+            <span class="pill">Reisen & Fotografie</span>
+            <span class="pill">Galerie: 14.200+ Medien</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona-detail-grid">
+        <div class="persona-box">
+          <h4>📍 Situation & Alltag</h4>
+          <p>Lukas studiert Wirtschaft & Medien. In seiner Freizeit reist er mit dem Rucksack durch Europa, wandert in den Bergen und fotografiert Landschaften und Architektur. In seiner Galerie mischen sich Uni-Mitschriften, Dokumenten-Scans und hunderte Urlaubsfotos.</p>
+        </div>
+
+        <div class="persona-box">
+          <h4>💡 Bedürfnisse</h4>
+          <ul>
+            <li>Zügiges Sichten und Vergleichen großer Bildmengen nach Reisen</li>
+            <li>Direkte Ablage in thematische Urlaubs- und Projektordner</li>
+            <li>Offline-Funktionalität im Zug oder Flugzeug ohne stabiles Internet</li>
+            <li>Flüssige Bedienung auch bei hochauflösenden RAW- und HDR-Fotos</li>
+          </ul>
+        </div>
+
+        <div class="persona-box">
+          <h4>🎯 Ziele</h4>
+          <ul>
+            <li>Urlaubsfotos sofort nach der Rückkehr bereinigen und ordnen</li>
+            <li>Doppelte Serienbilder und unscharfe Aufnahmen aussortieren</li>
+            <li>Alte Uni-Screenshots und Notizen gebündelt entfernen</li>
+          </ul>
+        </div>
+
+        <div class="persona-box">
+          <h4>⚠️ Frustrationen</h4>
+          <ul>
+            <li>Endlose Scroll-Listen in Standard-Galerien machen das Sortieren zur Qual</li>
+            <li>Sehr viele ähnliche Landschaftsaufnahmen verstopfen die Alben</li>
+            <li>Träge Cloud-Galerien, die Bilder erst mühsam nachladen müssen</li>
+          </ul>
+        </div>
+
+        <!-- JTBD Box -->
+        <div class="jtbd-box">
+          <h4>Jobs to be Done (JTBD)</h4>
+          <div class="jtbd-statement">
+            <strong>Job 1:</strong> „Wenn ich auf der Heimreise von einer Bergtour im Zug sitze, möchte ich in 15 Minuten 400 Urlaubsfotos sichten, damit nur die echten Highlights im Album bleiben und ich sie Freunden zeigen kann.“
+          </div>
+          <div class="jtbd-statement">
+            <strong>Job 2:</strong> „Wenn ein neues Studiensemester beginnt, möchte ich alte Vorlesungs-Screenshots und Dokumentenfotos gezielt aus meiner Fotogalerie entfernen, ohne private Urlaubsbilder anzutasten.“
+          </div>
+        </div>
+      </div>
+
+      <!-- Empathy Map -->
+      <div class="empathy-section">
+        <div class="empathy-title">Empathy Map · Lukas Berger</div>
+        <div class="empathy-grid">
+          <div class="empathy-card">
+            <strong>Sagt</strong>
+            <p>„Ich habe 50 Bilder vom selben Berggipfel, eigentlich reicht mir eines.“<br>„Ich brauche eine App, die auch offline im Flugmodus läuft.“</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Denkt</strong>
+            <p>„Welche Aufnahme hat die beste Belichtung?“<br>„Wie kann ich die vielen Reisebilder schnell für das Fotobuch vorbereiten?“</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Fühlt</strong>
+            <p>Überwältigt von der Masse an unorganisierten Fotos, aber hochzufrieden, wenn seine Reisealben sauber kuratiert sind.</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Tut</strong>
+            <p>Macht Burst-Serienaufnahmen, sammelt Uni-Notizen in der Galerie und lässt das Sortieren oft wochenlang liegen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Persona 3: Mehmet Yilmaz -->
+    <div class="persona-full-card">
+      <div class="persona-top">
+        <img class="persona-photo" src="assets/mehmet.jpg" alt="Mehmet Yilmaz, 35 Jahre, Projektmanager">
+        <div class="persona-intro">
+          <span class="persona-role-badge">Projektmanager · Familienvater</span>
+          <h3>Mehmet Yilmaz, 35 Jahre</h3>
+          <p class="persona-quote">„Ich möchte unbezahlbare Familienfotos sicher behalten, aber die Flut an WhatsApp-Dateien loswerden – ohne Angst, aus Versehen etwas Wichtiges zu löschen.“</p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="pill">iPhone 15 Pro (256 GB)</span>
+            <span class="pill">Familie & Beruf</span>
+            <span class="pill">Galerie: 22.000+ Medien</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="persona-detail-grid">
+        <div class="persona-box">
+          <h4>📍 Situation & Alltag</h4>
+          <p>Mehmet arbeitet als IT-Projektleiter und hat zwei Kinder (4 und 7 Jahre). Er filmt Familienmeilensteine in hochauflösendem 4K und fotografiert bei jedem Geburtstag. Gleichzeitig erhält er täglich unzählige Bilder, Videos und Memes über Familien-, Kita- und Schul-WhatsApp-Gruppen.</p>
+        </div>
+
+        <div class="persona-box">
+          <h4>💡 Bedürfnisse</h4>
+          <ul>
+            <li>Maximale Sicherheit gegen versehentliches Löschen (Papierkorb mit Wiederherstellung)</li>
+            <li>Kompromissloser, lokaler Datenschutz (kein externer Server-Upload privater Kinderfotos)</li>
+            <li>Schnelles Bereinigen speicherintensiver 4K-Videos</li>
+            <li>Einfache Bedienung ohne technisches Fachwissen</li>
+          </ul>
+        </div>
+
+        <div class="persona-box">
+          <h4>🎯 Ziele</h4>
+          <ul>
+            <li>Wichtige Familienerinnerungen schützen und in Alben strukturieren</li>
+            <li>Überflüssigen Messenger-Datenmüll und Videos bereinigen</li>
+            <li>Cloud-Speicherkosten durch gezieltes Aufräumen senken</li>
+          </ul>
+        </div>
+
+        <div class="persona-box">
+          <h4>⚠️ Frustrationen</h4>
+          <ul>
+            <li>Ständige Angst, aus Versehen wertvolle Momente der Kinder unwiderruflich zu löschen</li>
+            <li>WhatsApp-Spam und Memes überfluten die private Familien-Fotogalerie</li>
+            <li>Cloud-Speicherpläne werden immer teurer, weil niemand Zeit zum Aufräumen hat</li>
+          </ul>
+        </div>
+
+        <!-- JTBD Box -->
+        <div class="jtbd-box">
+          <h4>Jobs to be Done (JTBD)</h4>
+          <div class="jtbd-statement">
+            <strong>Job 1:</strong> „Wenn meine Kinder älter werden, möchte ich nur die emotional wertvollsten Erinnerungen im Familienarchiv behalten und 90% der Serienaufnahmen sicher entfernen, ohne Angst vor Verlust.“
+          </div>
+          <div class="jtbd-statement">
+            <strong>Job 2:</strong> „Wenn mein Cloud-Speicher voll wird, möchte ich große Videodateien prüfen und gigabyteweise Speicherplatz freigeben, mit der Sicherheit, dass gelöschte Dateien im Papierkorb liegen bleiben.“
+          </div>
+        </div>
+      </div>
+
+      <!-- Empathy Map -->
+      <div class="empathy-section">
+        <div class="empathy-title">Empathy Map · Mehmet Yilmaz</div>
+        <div class="empathy-grid">
+          <div class="empathy-card">
+            <strong>Sagt</strong>
+            <p>„Mein Speicher ist schon wieder voll, aber ich habe Angst, Fotos der Kinder zu verlieren.“<br>„Ich will 100% Datenschutz auf meinem Gerät.“</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Denkt</strong>
+            <p>„Welche Videos von den ersten Schritten sind unverzichtbar?“<br>„Ich habe keine Zeit für kompliziertes Datei-Verschieben.“</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Fühlt</strong>
+            <p>Vorsichtig und emotional bei Erinnerungen, aber extrem erleichtert und entspannt, wenn Sicherheit garantiert ist.</p>
+          </div>
+          <div class="empathy-card">
+            <strong>Tut</strong>
+            <p>Filmt wichtige Ereignisse der Familie, sammelt hunderte WhatsApp-Bilder und zögert beim Löschen aus Sorge vor Fehlern.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       05. DESIGNSYSTEM: FARBEN, TYPOGRAPHIE & DESIGN TOKENS
+       ======================================================================= -->
+  <section id="design" class="section">
+    <div class="section-title">
+      <span>05</span>
+      <div>
+        <p class="kicker">Designsystem</p>
+        <h2>Farben, Typographie & Design Tokens</h2>
+      </div>
+    </div>
+    <p class="intro">Das SwipePix Designsystem basiert auf dem „Apple Clean“-Prinzip: minimalistischer Aufbau, viel Weißraum, klare Typografie und konsistente Design Tokens.</p>
+
+    <!-- Farbsystem -->
+    <h3 style="margin-bottom: 8px;">1. Farbschema</h3>
+    <p style="margin-bottom: 24px;">Neun präzise definierte Farben bilden das Fundament aller visuellen Elemente:</p>
+
+    <div class="colors-grid">
+      <div class="color-card">
+        <div class="swatch" style="background: #34C759;"></div>
+        <div class="color-info">
+          <h4>Primary Green</h4>
+          <code>#34C759</code>
+          <p>Hauptfarbe · Behalten (Swipe Rechts) · Primärbuttons</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="swatch" style="background: #248A3D;"></div>
+        <div class="color-info">
+          <h4>Dark Green</h4>
+          <code>#248A3D</code>
+          <p>Textakzente · Ordner (Swipe Unten) · Hover-Zustände</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="swatch" style="background: #FF3B30;"></div>
+        <div class="color-info">
+          <h4>Delete Red</h4>
+          <code>#FF3B30</code>
+          <p>Löschen (Swipe Links) · Papierkorb · Ablehnen</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="swatch" style="background: #FF2D55;"></div>
+        <div class="color-info">
+          <h4>Favorite Pink</h4>
+          <code>#FF2D55</code>
+          <p>Favoriten (Swipe Oben) · Herz-Markierungen</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="swatch" style="background: #1D1D1F;"></div>
+        <div class="color-info">
+          <h4>Main Text</h4>
+          <code>#1D1D1F</code>
+          <p>Apple Tiefschwarz für Überschriften & Haupttexte</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="swatch" style="background: #6E6E73;"></div>
+        <div class="color-info">
+          <h4>Secondary Text</h4>
+          <code>#6E6E73</code>
+          <p>Dezente Subtexte, Metadaten & Beschreibungen</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="swatch" style="background: #F5F5F7;"></div>
+        <div class="color-info">
+          <h4>Background</h4>
+          <code>#F5F5F7</code>
+          <p>Heller, ruhiger Apple-Offwhite Seitenhintergrund</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="swatch" style="background: #FFFFFF;"></div>
+        <div class="color-info">
+          <h4>Cards</h4>
+          <code>#FFFFFF</code>
+          <p>Reines Weiß für erhabene Kartenflächen & Container</p>
+        </div>
+      </div>
+
+      <div class="color-card">
+        <div class="swatch" style="background: #E5E5EA;"></div>
+        <div class="color-info">
+          <h4>Border</h4>
+          <code>#E5E5EA</code>
+          <p>Feine Abgrenzungslinien, Trennstriche & Rahmen</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typographie -->
+    <div class="typography-specs">
+      <h3 style="margin-bottom: 6px;">2. Typographie & Schrifthierarchie</h3>
+      <p style="margin-bottom: 20px;">Serifenlose Typografie mit der Schriftfamilie <strong>Inter</strong> und Systemschriften (-apple-system / SF Pro) für gestochen scharfe Lesbarkeit:</p>
+
+      <div class="type-row">
+        <div class="type-meta">
+          <strong>H1 · Überschrift 1</strong>
+          <span>48–68 px · Bold (750) · Line-Height: 1.05</span>
+        </div>
+        <div class="type-preview">
+          <span style="font-size: 26px; font-weight: 750;">Deine Galerie. Endlich aufgeräumt.</span>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">
+          <strong>H2 · Überschrift 2</strong>
+          <span>32–42 px · Bold (700) · Line-Height: 1.15</span>
+        </div>
+        <div class="type-preview">
+          <span style="font-size: 22px; font-weight: 700;">Designsystem & Gestaltung</span>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">
+          <strong>H3 · Überschrift 3</strong>
+          <span>20–24 px · Semibold (650) · Line-Height: 1.2</span>
+        </div>
+        <div class="type-preview">
+          <span style="font-size: 18px; font-weight: 650;">Klare Apple-Clean Inhaltskarten</span>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">
+          <strong>Body Text · Fließtext</strong>
+          <span>16–18 px · Regular (400) · Line-Height: 1.6</span>
+        </div>
+        <div class="type-preview">
+          <span style="font-size: 15px; color: var(--muted);">Fotos und Videos mit einer einzigen Daumenbewegung mühelos sortieren.</span>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-meta">
+          <strong>Small / Caption</strong>
+          <span>13–14 px · Medium (500) · Line-Height: 1.4</span>
+        </div>
+        <div class="type-preview">
+          <span style="font-size: 13px; color: var(--muted);">Schulprojekt SJ 2026/27 · BBS Rohrbach</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Tokens Tabelle -->
+    <div class="tokens-container">
+      <h3 style="margin-bottom: 6px;">3. Design Tokens (:root)</h3>
+      <p style="margin-bottom: 16px;">Zentrale CSS Custom Properties gewährleisten konsistente Werte für Farben, Abstände, Radien und Elevation über die gesamte Webseite:</p>
+
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th>Token Kategorie</th>
+            <th>Token Name</th>
+            <th>Wert</th>
+            <th>Verwendungszweck</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Color</td>
+            <td><code>--green</code></td>
+            <td>#34C759</td>
+            <td>Primärfarbe, Behalten, Buttons</td>
+          </tr>
+          <tr>
+            <td>Color</td>
+            <td><code>--delete</code></td>
+            <td>#FF3B30</td>
+            <td>Löschen, Papierkorb, Warnungen</td>
+          </tr>
+          <tr>
+            <td>Color</td>
+            <td><code>--favorite</code></td>
+            <td>#FF2D55</td>
+            <td>Favoriten-Markierung</td>
+          </tr>
+          <tr>
+            <td>Color</td>
+            <td><code>--background</code></td>
+            <td>#F5F5F7</td>
+            <td>Seitenhintergrund</td>
+          </tr>
+          <tr>
+            <td>Color</td>
+            <td><code>--card</code></td>
+            <td>#FFFFFF</td>
+            <td>Inhaltskarten</td>
+          </tr>
+          <tr>
+            <td>Spacing</td>
+            <td><code>--space-sm</code></td>
+            <td>8px</td>
+            <td>Kompakter Innenabstand (Badges)</td>
+          </tr>
+          <tr>
+            <td>Spacing</td>
+            <td><code>--space-md</code></td>
+            <td>16px</td>
+            <td>Standardabstand (Karten-Lücken)</td>
+          </tr>
+          <tr>
+            <td>Spacing</td>
+            <td><code>--space-lg</code></td>
+            <td>24px</td>
+            <td>Container-Padding & Grids</td>
+          </tr>
+          <tr>
+            <td>Radius</td>
+            <td><code>--radius-sm</code></td>
+            <td>10px</td>
+            <td>Buttons, Swatches</td>
+          </tr>
+          <tr>
+            <td>Radius</td>
+            <td><code>--radius-md</code></td>
+            <td>16px</td>
+            <td>Standardkarten, Badges</td>
+          </tr>
+          <tr>
+            <td>Radius</td>
+            <td><code>--radius-lg</code></td>
+            <td>22px</td>
+            <td>Große Panels & Persona-Cards</td>
+          </tr>
+          <tr>
+            <td>Elevation</td>
+            <td><code>--shadow-subtle</code></td>
+            <td>0 2px 10px rgba(0,0,0,.035)</td>
+            <td>Standard-Kartenschatten</td>
+          </tr>
+          <tr>
+            <td>Elevation</td>
+            <td><code>--shadow-card</code></td>
+            <td>0 8px 24px rgba(0,0,0,.05)</td>
+            <td>Hervorgehobene Container</td>
+          </tr>
+          <tr>
+            <td>Transition</td>
+            <td><code>--transition-fast</code></td>
+            <td>0.2s ease</td>
+            <td>Hover-Effekte für Buttons & Links</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. Brand-Logo & UI-Komponenten -->
+    <div style="margin-top: 48px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-subtle);">
+      <h3 style="margin-bottom: 8px;">4. Brand-Logo & UI-Komponenten</h3>
+      <p style="margin-bottom: 24px;">Das neue SwipePix-Logo vereint die Apple-Squircle-Geometrie mit dem gestaffelten Fotokarten-Stapel und dem dynamischen Wischbogen:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 20px; background: var(--background); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--line);">
+          <img src="assets/logo.svg" alt="SwipePix App Icon" style="width: 68px; height: 68px; border-radius: 16px; box-shadow: 0 4px 16px rgba(52, 199, 89, 0.35);">
+          <div>
+            <strong style="display: block; font-size: 16px; color: var(--text);">SwipePix App-Icon</strong>
+            <span style="font-size: 13px; color: var(--muted);">1:1 Vektor-Squircle · Apple Green (#34C759)</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <strong style="font-size: 14px; color: var(--text);">Wisch-Aktionsbuttons:</strong>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="control-btn btn-delete" style="width: 42px; height: 42px; font-size: 17px;" title="Löschen (Rot #FF3B30)">←</button>
+            <button class="control-btn btn-undo" style="width: 42px; height: 42px; font-size: 17px;" title="Undo (Muted)">↩</button>
+            <button class="control-btn btn-fav" style="width: 42px; height: 42px; font-size: 17px;" title="Favorit (Pink #FF2D55)">↑</button>
+            <button class="control-btn btn-folder" style="width: 42px; height: 42px; font-size: 17px;" title="Ordner (Dunkelgrün #248A3D)">↓</button>
+            <button class="control-btn btn-keep" style="width: 42px; height: 42px; font-size: 17px;" title="Behalten (Grün #34C759)">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
+<!-- =======================================================================
+     FOOTER
+     ======================================================================= -->
 <footer>
-  <strong>SwipePix</strong>
-  <span>Swipe. Sort. Save. · Schulprojekt 2026</span>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+        <img src="assets/logo.svg" alt="SwipePix Logo">
+        Swipe<span>Pix</span>
+      </div>
+      <p>„Swipe. Sort. Save.“ · Statische Projekt-Webseite · SJ 2026/27</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#ziel">Ziel des Projekts</a>
+      <a href="#journeys">User Journeys</a>
+      <a href="#user-flows">User Flows</a>
+      <a href="#personas">Personas</a>
+      <a href="#design">Designsystem</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SwipePix – Schulprojekt (BBS Rohrbach · Fachbereich IMC · SJ 2026/27) · 100% Statische Ausgabe</span>
+  </div>
 </footer>
+
+<!-- Navigation Scroll-Spy -->
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 140;
+      if (window.pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // =========================================================================
+  // SwipePix Interaktiver Simulator
+  // =========================================================================
+  (function initSwipeSimulator() {
+    const cardDeck = document.getElementById('cardDeck');
+    const storageFreedVal = document.getElementById('storageFreedVal');
+    const streakPill = document.getElementById('streakPill');
+    const simulatorToast = document.getElementById('simulatorToast');
+    const btnDelete = document.getElementById('btnDelete');
+    const btnUndo = document.getElementById('btnUndo');
+    const btnFav = document.getElementById('btnFav');
+    const btnFolder = document.getElementById('btnFolder');
+    const btnKeep = document.getElementById('btnKeep');
+
+    if (!cardDeck) return;
+
+    const initialPhotos = [
+      {
+        id: 1,
+        title: "Urlaub Kroatien · Strand",
+        meta: "JPG · 4.2 MB · 12. Juli",
+        sizeMb: 4.2,
+        tag: "FOTO 12 / 1.280",
+        bg: "linear-gradient(145deg, #1A73E8 0%, #43CEA2 100%)",
+        elements: '<div class="mockup-sun"></div><div class="mockup-mountains"></div>'
+      },
+      {
+        id: 2,
+        title: "Serienaufnahme Selfie #4",
+        meta: "HEIC · 3.8 MB · Gestern",
+        sizeMb: 3.8,
+        tag: "DUPLIKAT · SERIE",
+        bg: "linear-gradient(145deg, #8E2DE2 0%, #F000FF 100%)",
+        elements: '<div style="position:absolute; width:90px; height:90px; border-radius:50%; background:rgba(255,255,255,0.22); top:30px; right:30px;"></div><div style="position:absolute; bottom:20px; left:20px; font-size:42px; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3));">🤳</div>'
+      },
+      {
+        id: 3,
+        title: "Screenshot Bahnticket ÖBB",
+        meta: "PNG · 1.5 MB · 3. Mai",
+        sizeMb: 1.5,
+        tag: "SCREENSHOT · ALT",
+        bg: "linear-gradient(145deg, #373B44 0%, #4286F4 100%)",
+        elements: '<div style="position:absolute; top:35px; left:20px; right:20px; height:18px; background:rgba(255,255,255,0.3); border-radius:6px;"></div><div style="position:absolute; top:65px; left:20px; width:60%; height:12px; background:rgba(255,255,255,0.2); border-radius:4px;"></div><div style="position:absolute; bottom:25px; right:20px; font-size:36px;">🎫</div>'
+      },
+      {
+        id: 4,
+        title: "Wanderung Dolomiten Gipfel",
+        meta: "RAW · 18.4 MB · 28. Aug",
+        sizeMb: 18.4,
+        tag: "FOTO 15 / 1.280",
+        bg: "linear-gradient(145deg, #134E5E 0%, #71B280 100%)",
+        elements: '<div style="position:absolute; width:52px; height:52px; border-radius:50%; background:#FFE259; top:30px; left:30px; box-shadow:0 0 24px #FFE259;"></div><div style="position:absolute; bottom:-40px; right:-20px; width:170px; height:170px; background:#0B2B1F; border-radius:32px; transform:rotate(45deg);"></div>'
+      },
+      {
+        id: 5,
+        title: "WhatsApp Lustige Katze.mp4",
+        meta: "MP4 · 8.6 MB · Vor 2 Tagen",
+        sizeMb: 8.6,
+        tag: "WHATSAPP · MEME",
+        bg: "linear-gradient(145deg, #F37335 0%, #FDC830 100%)",
+        elements: '<div style="position:absolute; top:40px; right:35px; font-size:50px;">🐱</div><div style="position:absolute; bottom:28px; left:20px; background:rgba(0,0,0,0.5); padding:4px 9px; border-radius:6px; font-size:12px; font-weight:700;">▶ 0:14</div>'
+      },
+      {
+        id: 6,
+        title: "Familienfest Geburtstag 4K",
+        meta: "4K VIDEO · 245.0 MB · 15. Sep",
+        sizeMb: 245.0,
+        tag: "4K VIDEO · MEILENSTEIN",
+        bg: "linear-gradient(145deg, #ED213A 0%, #93291E 100%)",
+        elements: '<div style="position:absolute; top:30px; right:20px; background:rgba(255,255,255,0.95); color:#93291E; font-weight:800; font-size:11px; padding:3px 9px; border-radius:6px;">4K UHD</div><div style="position:absolute; bottom:25px; right:25px; font-size:40px;">🎂</div>'
+      }
+    ];
+
+    let photos = [...initialPhotos];
+    let currentIndex = 0;
+    let history = [];
+    let storageFreed = 0.0;
+    let isAnimating = false;
+
+    function updateStats() {
+      storageFreedVal.textContent = storageFreed.toFixed(1) + ' MB';
+      btnUndo.disabled = history.length === 0;
+      if (currentIndex >= photos.length) {
+        streakPill.textContent = '🔥 8 Tage Streak!';
+        streakPill.style.background = 'var(--green-soft)';
+        streakPill.style.color = 'var(--green-dark)';
+      } else {
+        streakPill.textContent = '🔥 7 Tage Streak';
+      }
+    }
+
+    function setToast(msg, color) {
+      simulatorToast.textContent = msg;
+      if (color) {
+        simulatorToast.style.color = color;
+      } else {
+        simulatorToast.style.color = 'var(--muted)';
+      }
+    }
+
+    function renderDeck() {
+      cardDeck.innerHTML = '';
+
+      if (currentIndex >= photos.length) {
+        // Leerer Abschluss-Bildschirm
+        const empty = document.createElement('div');
+        empty.className = 'mockup-empty-state';
+        empty.innerHTML = `
+          <div style="font-size: 38px; margin-bottom: 10px;">🎉</div>
+          <strong style="font-size: 17px; color: var(--text); margin-bottom: 4px;">Aufräum-Session beendet!</strong>
+          <p style="font-size: 13.5px; color: var(--muted); margin: 0 0 16px 0;">Alle 6 Medien sortiert · <strong>${storageFreed.toFixed(1)} MB</strong> freigegeben.</p>
+          <button id="btnResetDeck" class="btn btn-primary" style="padding: 9px 18px; font-size: 13px;">Nochmal testen ↺</button>
+        `;
+        cardDeck.appendChild(empty);
+        document.getElementById('btnResetDeck').addEventListener('click', () => {
+          currentIndex = 0;
+          history = [];
+          storageFreed = 0.0;
+          updateStats();
+          setToast('Demo zurückgesetzt! Klicke die Buttons oder wische.');
+          renderDeck();
+        });
+        return;
+      }
+
+      // Nächste Karte darunter (Vorschau)
+      if (currentIndex + 1 < photos.length) {
+        const nextData = photos[currentIndex + 1];
+        const nextCard = createCardElement(nextData, false);
+        nextCard.classList.add('card-next');
+        cardDeck.appendChild(nextCard);
+      }
+
+      // Oberste aktive Karte
+      const currentData = photos[currentIndex];
+      const activeCard = createCardElement(currentData, true);
+      activeCard.classList.add('card-active');
+      cardDeck.appendChild(activeCard);
+
+      attachDragHandlers(activeCard);
+    }
+
+    function createCardElement(data, isActive) {
+      const card = document.createElement('div');
+      card.className = 'mockup-photo-card';
+      card.style.background = data.bg;
+
+      card.innerHTML = `
+        ${data.elements || ''}
+        <span class="mockup-tag">${data.tag}</span>
+
+        <!-- Wisch-Stempel -->
+        <span class="action-stamp stamp-keep">BEHALTEN</span>
+        <span class="action-stamp stamp-delete">GELÖSCHT</span>
+        <span class="action-stamp stamp-fav">FAVORIT</span>
+        <span class="action-stamp stamp-folder">IN ORDNER</span>
+
+        <div class="mockup-details">
+          <strong>${data.title}</strong>
+          <span>${data.meta}</span>
+        </div>
+      `;
+      return card;
+    }
+
+    function triggerSwipe(direction) {
+      if (isAnimating || currentIndex >= photos.length) return;
+      isAnimating = true;
+
+      const activeCard = cardDeck.querySelector('.card-active');
+      if (!activeCard) {
+        isAnimating = false;
+        return;
+      }
+
+      const photo = photos[currentIndex];
+      let stampClass = '';
+      let toastMsg = '';
+      let toastColor = '';
+      let transformEnd = '';
+
+      if (direction === 'right') {
+        stampClass = '.stamp-keep';
+        toastMsg = `✅ "${photo.title}" behalten`;
+        toastColor = 'var(--green)';
+        transformEnd = 'translate(140%, 15px) rotate(22deg)';
+        history.push({ photo, action: 'right', freed: 0 });
+      } else if (direction === 'left') {
+        stampClass = '.stamp-delete';
+        toastMsg = `🗑️ "${photo.title}" in Papierkorb (+${photo.sizeMb} MB)`;
+        toastColor = 'var(--delete)';
+        transformEnd = 'translate(-140%, 15px) rotate(-22deg)';
+        storageFreed += photo.sizeMb;
+        history.push({ photo, action: 'left', freed: photo.sizeMb });
+      } else if (direction === 'up') {
+        stampClass = '.stamp-fav';
+        toastMsg = `⭐ "${photo.title}" als Favorit markiert`;
+        toastColor = 'var(--favorite)';
+        transformEnd = 'translate(0, -140%) scale(0.9)';
+        history.push({ photo, action: 'up', freed: 0 });
+      } else if (direction === 'down') {
+        stampClass = '.stamp-folder';
+        toastMsg = `📁 "${photo.title}" in Album verschoben`;
+        toastColor = 'var(--green-dark)';
+        transformEnd = 'translate(0, 140%) scale(0.9)';
+        history.push({ photo, action: 'down', freed: 0 });
+      }
+
+      const stamp = activeCard.querySelector(stampClass);
+      if (stamp) {
+        stamp.style.opacity = '1';
+        stamp.style.transform = stamp.style.transform.replace('scale(0.8)', 'scale(1.05)');
+      }
+
+      setToast(toastMsg, toastColor);
+      updateStats();
+
+      setTimeout(() => {
+        activeCard.style.transform = transformEnd;
+        activeCard.style.opacity = '0';
+
+        setTimeout(() => {
+          currentIndex++;
+          renderDeck();
+          updateStats();
+          isAnimating = false;
+        }, 220);
+      }, 70);
+    }
+
+    function triggerUndo() {
+      if (isAnimating || history.length === 0) return;
+      isAnimating = true;
+
+      const last = history.pop();
+      if (last.action === 'left') {
+        storageFreed = Math.max(0, storageFreed - last.freed);
+      }
+      currentIndex--;
+      updateStats();
+      setToast(`↩ "${last.photo.title}" wiederhergestellt`);
+
+      renderDeck();
+      const activeCard = cardDeck.querySelector('.card-active');
+      if (activeCard) {
+        if (last.action === 'right') {
+          activeCard.style.transform = 'translate(100%, 0) rotate(15deg)';
+        } else if (last.action === 'left') {
+          activeCard.style.transform = 'translate(-100%, 0) rotate(-15deg)';
+        } else if (last.action === 'up') {
+          activeCard.style.transform = 'translate(0, -100%)';
+        } else if (last.action === 'down') {
+          activeCard.style.transform = 'translate(0, 100%)';
+        }
+        activeCard.style.opacity = '0';
+
+        requestAnimationFrame(() => {
+          activeCard.style.transition = 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease';
+          activeCard.style.transform = 'translate(0, 0) rotate(0deg)';
+          activeCard.style.opacity = '1';
+          setTimeout(() => {
+            isAnimating = false;
+          }, 300);
+        });
+      } else {
+        isAnimating = false;
+      }
+    }
+
+    // Touch & Pointer Drag Logik
+    function attachDragHandlers(card) {
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      const stampKeep = card.querySelector('.stamp-keep');
+      const stampDelete = card.querySelector('.stamp-delete');
+      const stampFav = card.querySelector('.stamp-fav');
+      const stampFolder = card.querySelector('.stamp-folder');
+
+      function onPointerDown(e) {
+        if (isAnimating) return;
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        card.style.transition = 'none';
+        card.setPointerCapture(e.pointerId);
+      }
+
+      function onPointerMove(e) {
+        if (!isDragging) return;
+        currentX = e.clientX - startX;
+        currentY = e.clientY - startY;
+
+        const rotate = currentX * 0.08;
+        card.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rotate}deg)`;
+
+        // Stempel Opacity Feedback beim Ziehen
+        if (currentX > 35) {
+          stampKeep.style.opacity = Math.min(1, (currentX - 35) / 45);
+          stampDelete.style.opacity = 0;
+        } else if (currentX < -35) {
+          stampDelete.style.opacity = Math.min(1, (-currentX - 35) / 45);
+          stampKeep.style.opacity = 0;
+        } else {
+          stampKeep.style.opacity = 0;
+          stampDelete.style.opacity = 0;
+        }
+
+        if (currentY < -35 && Math.abs(currentX) < 45) {
+          stampFav.style.opacity = Math.min(1, (-currentY - 35) / 45);
+        } else {
+          stampFav.style.opacity = 0;
+        }
+
+        if (currentY > 35 && Math.abs(currentX) < 45) {
+          stampFolder.style.opacity = Math.min(1, (currentY - 35) / 45);
+        } else {
+          stampFolder.style.opacity = 0;
+        }
+      }
+
+      function onPointerUp(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        try { card.releasePointerCapture(e.pointerId); } catch (_) {}
+
+        card.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+
+        const threshold = 70;
+        if (currentX > threshold) {
+          triggerSwipe('right');
+        } else if (currentX < -threshold) {
+          triggerSwipe('left');
+        } else if (currentY < -threshold && Math.abs(currentX) < threshold) {
+          triggerSwipe('up');
+        } else if (currentY > threshold && Math.abs(currentX) < threshold) {
+          triggerSwipe('down');
+        } else {
+          // Snap back
+          card.style.transform = 'translate(0, 0) rotate(0deg)';
+          stampKeep.style.opacity = 0;
+          stampDelete.style.opacity = 0;
+          stampFav.style.opacity = 0;
+          stampFolder.style.opacity = 0;
+        }
+      }
+
+      card.addEventListener('pointerdown', onPointerDown);
+      card.addEventListener('pointermove', onPointerMove);
+      card.addEventListener('pointerup', onPointerUp);
+      card.addEventListener('pointercancel', onPointerUp);
+    }
+
+    // Button Click Listener
+    btnDelete.addEventListener('click', () => triggerSwipe('left'));
+    btnKeep.addEventListener('click', () => triggerSwipe('right'));
+    btnFav.addEventListener('click', () => triggerSwipe('up'));
+    btnFolder.addEventListener('click', () => triggerSwipe('down'));
+    btnUndo.addEventListener('click', triggerUndo);
+
+    // Tastatursteuerung
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        triggerSwipe('left');
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        triggerSwipe('right');
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        triggerSwipe('up');
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        triggerSwipe('down');
+      } else if (e.key.toLowerCase() === 'z' || e.key === 'Backspace') {
+        e.preventDefault();
+        triggerUndo();
+      }
+    });
+
+    // Initial rendern
+    renderDeck();
+    updateStats();
+  })();
+</script>
+
 </body>
 </html>
